@@ -1,7 +1,3 @@
--- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
-
 CREATE TABLE "nba_data" (
     "Rank" int NOT NULL,
     "Player" varchar(50) NOT NULL,
@@ -11,13 +7,9 @@ CREATE TABLE "nba_data" (
     "Points" int   NOT NULL,
     "BirthDate" Date,
     "City" varchar (30),
-    "Region" varchar(50)   NOT NULL
+    "Region" varchar(50) NOT NULL,
+	"lat" decimal,
+	"lng" decimal
 );
 
-select * from nba_data
-
-
---Create flask server module with sqlalcahmey
---connect to the database
---connect successful, return the table 
---should see your data in the console
+Select * from nba_data;
