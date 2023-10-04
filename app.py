@@ -25,7 +25,7 @@ app = Flask(__name__)
 
 # @app.route('/')
 # def home():
-#    return render_template('index.html')
+    
     
 
 # from flask_cors import CORS
@@ -37,13 +37,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    with engine.connect() as conn:
-        x= conn.execute(text("SELECT * FROM nba_data"))
-        nba = [dict(row) for row in x]
-    return jsonify(nba)
+    return render_template('index.html')
+    # with engine.connect() as conn:
+    #     x= conn.execute(text("SELECT * FROM nba_data"))
+    #     nba = [dict(row) for row in x]
+    # return jsonify(nba)
    
     
 
     
 if __name__ == '__main__':
    app.run()
+
+   #module 10 day 3 activity 10 
