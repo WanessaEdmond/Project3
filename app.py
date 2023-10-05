@@ -17,36 +17,40 @@ from sqlalchemy import inspect
 from flask import Flask, jsonify
 from sqlalchemy import text
 from flask import Flask, render_template
+from flask_cors import CORS, cross_origin 
 
 
 engine = create_engine("sqlite:///nba_database.sqlite", echo=False)
 
+
+
 app = Flask(__name__)
 
-# @app.route('/')
-# def home():
-    
-    
 
-# from flask_cors import CORS
 # CORS(app)
-#pip install flask-cors
+
+# header("Access-Control-Allow-Origin: *"):
 
 
 
 
 @app.route('/')
-def home():
-    return render_template('index.html')
-    # with engine.connect() as conn:
-    #     x= conn.execute(text("SELECT * FROM nba_data"))
-    #     nba = [dict(row) for row in x]
-    # return jsonify(nba)
+def index():
+   return render_template('index.html')
+
+@app.route('/nba')
+# @cross_origin()
+def nbaData():
+    with engine.connect() as conn:
+         x= conn.execute(text("SELECT * FROM nba_data"))
+         nba = [dict(row) for row in x]
+    return jsonify(nba)
+
+    
+ 
    
     
 
     
 if __name__ == '__main__':
-   app.run()
-
-   #module 10 day 3 activity 10 
+    app.run(debug=True)
