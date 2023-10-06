@@ -46,7 +46,14 @@ def nbaData():
          nba = [dict(row) for row in x]
     return jsonify(nba)
 
-    
+@app.route('/regions')
+# @cross_origin()
+def regions():
+    with engine.connect() as conn:
+         x= conn.execute(text("SELECT Region,City,AVG(Points) as Avg_Points FROM nba_data Group by Region,City"))
+         nba = [dict(row) for row in x]
+    return jsonify(nba)
+  
  
    
     
