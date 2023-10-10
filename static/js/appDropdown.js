@@ -71,7 +71,8 @@ function dropdown_menu2(region_name){
 
     d3.json(regions_url).then((data2) => {
         // console.log(data)
-let regionname = data2.map(x => x.Region);
+let regionname=[...new Set(data2.map(obj=>obj.Region))];
+// let regionname = data2.map(x => x.Region);
         // console.log(names)
 let dropdown_selector2 = d3.select("#selDataset2")
 regionname.forEach((names) => {
@@ -112,16 +113,8 @@ Object.entries(filterdata2).forEach(entry => {
     .text(`${key}: ${value}`)
 
 });
-})
-
- 
-}
-
-//bar chart
-d3.json(regions_url).then((data2) => {
-
-let City2 = data2.City
-let Avg_Points2 =data2.Avg_Points
+let City2 = filterdata2.City
+let Avg_Points2 =filterdata2.Avg_Points
 
 var bardata = [{
     x: City2,
@@ -136,7 +129,7 @@ var bardata = [{
   
   
 
-  
+
   var barlayout = {
     title: 'Bar Chart',
 
@@ -147,3 +140,39 @@ var bardata = [{
   
     
 });
+
+}
+
+ 
+
+
+// //bar chart
+// d3.json(regions_url).then((data2) => {
+
+// let City2 = data2.City
+// let Avg_Points2 =data2.Avg_Points
+
+// var bardata = [{
+//     x: City2,
+//     y: Avg_Points2,
+//     text:City2,
+//     orientation: 'h',
+//     marker: {
+//       colorscale: 'Earth',
+//     },
+//     type: 'bar'
+//   }];
+  
+  
+
+
+//   var barlayout = {
+//     title: 'Bar Chart',
+
+//   };
+  
+//   Plotly.newPlot('bar', bardata, barlayout);
+  
+  
+    
+// });
