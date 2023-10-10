@@ -102,8 +102,9 @@ function region_table(names){
     d3.json(regions_url).then((data2) => {
        console.log(data2)
 
-let filterdata2= data2.filter(_data2 => _data2.Region == names)[0]
+let filterdata2= data2.filter(_data2 => _data2.Region == names)
 console.log(filterdata2)
+
 let region_dropdown = d3.select("#Region_Name")
 region_dropdown.html("")
 Object.entries(filterdata2).forEach(entry => {
@@ -113,14 +114,24 @@ Object.entries(filterdata2).forEach(entry => {
     .text(`${key}: ${value}`)
 
 });
-let City2 = filterdata2.City
-let Avg_Points2 =filterdata2.Avg_Points
+let City2 = []
+let Avg_Points2 = []
+filterdata2.forEach((names) => {
+    City2.push(names.City)
+    Avg_Points2.push(names.Avg_Points)
+        
+ 
+    
+})
+
+
+
+
 
 var bardata = [{
     x: City2,
     y: Avg_Points2,
     text:City2,
-    orientation: 'h',
     marker: {
       colorscale: 'Earth',
     },
@@ -131,7 +142,7 @@ var bardata = [{
 
 
   var barlayout = {
-    title: 'Bar Chart',
+    title: 'Average points per City',
 
   };
   
@@ -142,7 +153,13 @@ var bardata = [{
 });
 
 }
+function bubblemap(){
 
+
+
+
+    
+}
  
 
 
