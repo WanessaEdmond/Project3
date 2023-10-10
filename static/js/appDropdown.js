@@ -97,7 +97,7 @@ function optionChanged2(names){
     region_table(names)   
 }
 
-function region_table(names){
+function region_table(names) {
 
     d3.json(regions_url).then((data2) => {
        console.log(data2)
@@ -119,14 +119,7 @@ let Avg_Points2 = []
 filterdata2.forEach((names) => {
     City2.push(names.City)
     Avg_Points2.push(names.Avg_Points)
-        
- 
-    
 })
-
-
-
-
 
 var bardata = [{
     x: City2,
@@ -137,22 +130,59 @@ var bardata = [{
     },
     type: 'bar'
   }];
-  
-  
-
-
   var barlayout = {
     title: 'Average Points per City',
 
   };
   
   Plotly.newPlot('bar', bardata, barlayout);
+
+var pieData = [{
+    values: Avg_Points2,
+    labels:City2,
+    type: 'pie',
+    automargin: true,
+
+
+  }];
+  var pieLayout = {
+    title: 'Percentages of Points',
+    height: 650,
+    width: 700,
+ 
+
+  };
+  
+  Plotly.newPlot('pieBar', pieData, pieLayout);
   
   
     
 });
+        
+ 
+    
+};
 
-}
+
+
+
+// var data = [{
+//     values: [19, 26, 55],
+//     labels: ['Residential', 'Non-Residential', 'Utility'],
+//     type: 'pie'
+//   }];
+  
+//   var layout = {
+//     height: 400,
+//     width: 500
+//   };
+  
+//   Plotly.newPlot('myDiv', data, layout);
+
+
+  
+
+
 function bubblemap(){
 
 
